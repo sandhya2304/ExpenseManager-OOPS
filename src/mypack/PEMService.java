@@ -16,6 +16,10 @@ public class PEMService
 	
 	private int choice ;
 	
+	public PEMService() {
+		sampleData();
+	}
+	
 	
 	public void showMenu()
 	{
@@ -127,6 +131,8 @@ public class PEMService
 			
 			String name = catNameById(expense.getCategoryId());
 			
+			//String dd = DateUtility.dateToString(expense.getDate());
+			
 			System.out.println((i+1)+" . "+ name +" : "
 			             +expense.getAmt()+" : "+expense.getRemark()+" : "+expense.getDate());
 		}
@@ -173,6 +179,12 @@ public class PEMService
 		
 		Date date = new Date();
 		
+		//System.out.println("Enter date .....");
+		//String date = sc.nextLine();
+		
+		//Date dat = DateUtility.stringToDate(date);
+
+		
 		//add expense detail in exp object
 		Expense exp = new Expense(amt, date, remark, selectCat.getCategoryId());
 		
@@ -216,6 +228,53 @@ public class PEMService
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void delay()
+	{
+		try
+		{
+			Thread.sleep(10);
+		}catch(Exception e)
+		{
+			
+		}
+	}
+	
+	
+	public void sampleData()
+	{
+		Category cat1= new Category("party");
+		delay();
+		Category cat2= new Category("school");
+		delay();
+		Category cat3= new Category("tution");
+		
+		
+		repo.catList.add(cat1);
+		repo.catList.add(cat2);
+		repo.catList.add(cat3);
+		
+		
+		
+		//month wise
+		Expense exp1 = new Expense(90.0f,DateUtility.stringToDate("12/2/2016"),"party expense", cat1.getCategoryId());
+		delay();
+		
+		Expense exp2 = new Expense(1.0f,DateUtility.stringToDate("1/12/2017"),"school expense", cat2.getCategoryId());
+		delay();
+		
+		Expense exp3 = new Expense(170.0f,DateUtility.stringToDate("1/1/2016"),"party expense", cat1.getCategoryId());
+		delay();
+		
+		Expense exp4 = new Expense(4.0f,DateUtility.stringToDate("6/2/2019"),"tution expense", cat3.getCategoryId());
+		delay();
+		
+		repo.expList.add(exp1);
+		repo.expList.add(exp2);
+		repo.expList.add(exp3);
+		repo.expList.add(exp4);
+		
 	}
 
 }
